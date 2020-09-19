@@ -45,6 +45,32 @@
             
         }
 
+        public function datosEstudiante() {
+            
+            $usuario = $this->param['usuario'];
+            
+
+            $query = "SELECT name, notas, credito FROM notas WHERE usuario = '$usuario'";
+            $stid = $this->dbConn->query($query);
+            $number = $stid->num_rows;
+            $result = array();
+
+            while ($row = $stid->fetch_array(MYSQLI_ASSOC)){
+                array_push($result,$row);
+            }
+
+            $stid->free();
+
+            if($number>0){
+                $result['resultado'] = 'S';
+                $this->returnResponse(SUCCESS_RESPONSE, $result);
+            }else{
+                $result['resultado'] = 'El estudiante no tiene ninguna clase registrada';
+                $this->returnResponse(REQUEST_NOT_VALID, $result);
+            }
+
+        }
+
 
     }
     
