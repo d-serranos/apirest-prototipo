@@ -55,13 +55,22 @@
             $number = $stid->num_rows;
             $result = array();
 
+            $total_clases = 0;
+            $total_Credito = 0;
+
             while ($row = $stid->fetch_array(MYSQLI_ASSOC)){
                 array_push($result,$row);
+                $total_clases += $row['notas'];
+                $total_Credito += $row['credito'];
             }
 
             $stid->free();
 
+
             if($number>0){
+                $promedio = number_format(($total_clases/$number),2);
+                $result['promedio']=$promedio;
+                $result['acumulado_credito'] = $total_Credito;
                 $result['resultado'] = 'S';
                 $this->returnResponse(SUCCESS_RESPONSE, $result);
             }else{
