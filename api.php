@@ -5,8 +5,6 @@
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
     header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
-    include $_SERVER['DOCUMENT_ROOT'] . '/apps/api_ingresos/sap/functions.php';
-
     class  Api extends Rest
     {
         public $dbConn;
