@@ -5,6 +5,7 @@
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
     header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
+
     class  Api extends Rest
     {
         public $dbConn;
@@ -26,7 +27,7 @@
                         WHERE usuario = '$usuario' 
                        AND password = md5('$password')";
 
-            $stid = $mysqli->query($this->dbConn, $query);
+            $stid = $this->dbConn->query($query);
 
             
 
